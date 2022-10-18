@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="container text-center">
+        <ng-container *ngFor="let prize of prizes; let i = index">
+            <div class="box" *ngIf="currentStage == prizes.length - (i+1)" [style.z-index]="prizes.length - (i+1)" [style.margin-top]="currentStage > prizes.length - (i+1) ? (prizes.length)*10+65*(i+1) + 'px' : 75*(i+1) + 'px'">
+                <app-cylinder-counter [prize]="'£'+prize" [cylinderClass]="i==0 ? 'big-cylinder current':'current'"></app-cylinder-counter>
+            </div>
+            <div class="box" *ngIf="currentStage != prizes.length - (i+1)" [style.z-index]="prizes.length - (i+1)" [style.margin-top]="currentStage > prizes.length - (i+1) ? (prizes.length)*10+65*(i+1) + 'px' : 75*(i+1) + 'px'">
+                <app-cylinder-counter [prize]="'£'+prize" [cylinderClass]="i==0 ? 'big-cylinder default':'default'"></app-cylinder-counter>
+            </div>
+        </ng-container>
+
+        <div class="box" [style.margin-top]="(prizes.length+1)*75+'px'">
+            <app-cylinder-counter [prize]="'£'+currentBalance" [cylinderClass]="'big-cylinder default'"></app-cylinder-counter>
+        </div>
+        <div class="box" [style.margin-top]="(prizes.length+1)*75+25+'px'">
+            <app-cylinder-counter [prize]="'Bank'" [cylinderClass]="'big-cylinder plain'"></app-cylinder-counter>
+        </div>
+    </div>
+</div>
+
+<div class="row col-2 m-5">
+    <button class="btn btn-primary" (click)="updateStage()">Correct</button>
+</div>
+
+<div class="row col-2 m-5">
+    <button class="btn btn-danger" (click)="resetStage()">Wrong</button>
+</div>
+
+<div class="row col-2 m-5">
+    <button class="btn btn-success" (click)="saveInBank()">Bank</button>
+</div>

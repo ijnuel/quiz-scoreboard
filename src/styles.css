@@ -1,0 +1,6 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    /* background-image: 'src/assets/media/game-bg-dots.jpgs' */
+    background-image: repeating-linear-gradient(to right, rgba(0, 0, 255, 0.4), rgba(255, 255, 255, 1), rgba(0, 0, 255, 0.4));
+}

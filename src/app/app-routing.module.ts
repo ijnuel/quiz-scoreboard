@@ -8,6 +8,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./modules/counter/counter.module').then((m) => m.CounterModule),
+  },
+  {
+    path: 'election',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./modules/vote/vote.module').then((m) => m.VoteModule),
   }];
 
 @NgModule({

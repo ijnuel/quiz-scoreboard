@@ -1,0 +1,18 @@
+.card {
+    opacity: 0.7;
+}
+
+.card:hover {
+    --bp-bg-opacity: 1;
+    background-color: rgba(var(--bp-primary-rgb), var(--bp-bg-opacity)) !important;
+    cursor: pointer;
+}
+
+.row.text-center {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.text-center .col-3 {
+    border-radius: 5px;
+}

@@ -1,0 +1,14 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<div class="m-5">
+    <div class="row">
+        <app-result [data$]="country$" [level]="0"></app-result>
+    </div>
+
+    <div class="row">
+        <app-result class="col-3" [data$]="state$" [level]="1" [selected]="selectedState"></app-result>
+        <app-result class="col-3" [data$]="lga$" [level]="2" [selected]="selectedLga"></app-result>
+        <app-result class="col-3" [data$]="ward$" [level]="3" [selected]="selectedWard"></app-result>
+        <app-result class="col-3" [data$]="pollingUnit$" [level]="4"></app-result>
+    </div>
+
+</div>

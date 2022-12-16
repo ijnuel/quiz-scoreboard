@@ -1,0 +1,147 @@
+<div class="card mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-5">
+        <!--begin::Wrapper-->
+
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bolder fs-3 mb-1">Update {{voteResult.name}}</span>
+
+        </h3>
+        <div class="modal-body">
+            <form class="form w-100" [formGroup]="form" id="kt_sign_in_form" (ngSubmit)="submit()">
+                <div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label><b>APC</b></label>
+                            <input (input)="updateTotalValidator($event)" type="number" formControlName="apc" class="form-control" [ngClass]="{
+          'is-invalid': form.controls['apc'].invalid,
+          'is-valid': form.controls['apc'].valid
+        }" />
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'required',
+          message: 'APC is required',
+          control: form.controls['apc']
+        }"></ng-container>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+validation: 'min',
+message: 'Cannot be lower than 0',
+control: form.controls['apc']
+}"></ng-container>
+                            <br><br>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label><b>LP</b></label>
+                            <input (input)="updateTotalValidator($event)" type="number" formControlName="lp" class="form-control" [ngClass]="{
+          'is-invalid': form.controls['lp'].invalid,
+          'is-valid': form.controls['lp'].valid
+        }" />
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'required',
+          message: 'LP is required',
+          control: form.controls['lp']
+        }"></ng-container>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+validation: 'min',
+message: 'Cannot be lower than 0',
+control: form.controls['lp']
+}"></ng-container>
+                            <br><br>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label><b>NNPP</b></label>
+                            <input (input)="updateTotalValidator($event)" type="number" formControlName="nnpp" class="form-control" [ngClass]="{
+          'is-invalid': form.controls['nnpp'].invalid,
+          'is-valid': form.controls['nnpp'].valid
+        }" />
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'required',
+          message: 'NNPP is required',
+          control: form.controls['nnpp']
+        }"></ng-container>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+validation: 'min',
+message: 'Cannot be lower than 0',
+control: form.controls['nnpp']
+}"></ng-container>
+                            <br><br>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label><b>PDP</b></label>
+                            <input (input)="updateTotalValidator($event)" type="number" formControlName="pdp" class="form-control" [ngClass]="{
+          'is-invalid': form.controls['pdp'].invalid,
+          'is-valid': form.controls['pdp'].valid
+        }" />
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+          validation: 'required',
+          message: 'PDP is required',
+          control: form.controls['pdp']
+        }"></ng-container>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+validation: 'min',
+message: 'Cannot be lower than 0',
+control: form.controls['pdp']
+}"></ng-container>
+                            <br><br>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label><b>Total</b></label>
+                            <input type="number" formControlName="total" class="form-control" [ngClass]="{
+          'is-invalid': form.controls['total'].invalid,
+          'is-valid': form.controls['total'].valid
+        }" />
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Total is required',
+            control: form.controls['total']
+          }"></ng-container>
+                            <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+            validation: 'min',
+            message: 'Cannot be lower than total party sum',
+            control: form.controls['total']
+          }"></ng-container>
+                            <br><br>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success" [disabled]="form.invalid">Update</button> &nbsp;
+                        <button class="btn btn-primary" type="button" (click)="resetForm()">Reset</button> &nbsp;
+                        <button class="btn btn-danger" type="button" (click)="closeModal()">
+                Close &nbsp;
+              </button>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+    <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+        <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+                <span role="alert">
+            {{ message }}
+          </span>
+            </div>
+        </div>
+    </ng-container>
+</ng-template>

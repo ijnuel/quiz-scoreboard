@@ -1,0 +1,43 @@
+<ng-container *ngIf="data$ | async as data">
+
+    <div *ngIf="level > 0 && (originalData.length > 0 || data.length > 0)" class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">{{getLevel()}}</span>
+        <input (input)="onSearchChange($event)" type="text" class="form-control" [placeholder]="'Enter '+getLevel()">
+    </div>
+    <div (click)="fetch(voteResult.id)" [ngClass]="'mb-2 card p-2'+getSelectClass(voteResult)" *ngFor="let voteResult of data">
+        <div class="row">
+            <h3 class="col-9">{{voteResult.name}}</h3>
+            <div class="col-3 text-end mr-1">
+                <div *ngIf="level != 0 && level != 4">{{voteResult.percentageComplete | number}}%</div>
+                <mat-icon *ngIf="level == 0" (click)="fetch(0)">refresh</mat-icon>
+                <mat-icon *ngIf="level == 4" (click)="updatePollingUnitResult(voteResult)">edit</mat-icon>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div [ngClass]="'col-3 border-end'+getPartyStatus(voteResult.partyVotes.apc, voteResult.partyVotes)">
+                <div><b>APC</b></div>
+                <div>{{voteResult.partyVotes.apc | number}}</div>
+                <div>{{GetPercentage(voteResult.partyVotes.apc, voteResult.partyVotes.total)}}%</div>
+            </div>
+            <div [ngClass]="'col-3 border-end'+getPartyStatus(voteResult.partyVotes.lp, voteResult.partyVotes)">
+                <div><b>LP</b></div>
+                <div>{{voteResult.partyVotes.lp | number}}</div>
+                <div>{{GetPercentage(voteResult.partyVotes.lp, voteResult.partyVotes.total)}}%</div>
+            </div>
+            <div [ngClass]="'col-3 border-end'+getPartyStatus(voteResult.partyVotes.nnpp, voteResult.partyVotes)">
+                <div><b>NNPP</b></div>
+                <div>{{voteResult.partyVotes.nnpp | number}}</div>
+                <div>{{GetPercentage(voteResult.partyVotes.nnpp, voteResult.partyVotes.total)}}%</div>
+            </div>
+            <div [ngClass]="'col-3'+getPartyStatus(voteResult.partyVotes.pdp, voteResult.partyVotes)">
+                <div><b>PDP</b></div>
+                <div>{{voteResult.partyVotes.pdp | number}}</div>
+                <div>{{GetPercentage(voteResult.partyVotes.pdp, voteResult.partyVotes.total)}}%</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"><b>Total:</b></div>
+            <div class="col-8 text-end"><b>{{voteResult.partyVotes.total | number}}</b></div>
+        </div>
+    </div>
+</ng-container>

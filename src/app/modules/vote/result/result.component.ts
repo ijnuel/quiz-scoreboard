@@ -54,7 +54,8 @@ export class ResultComponent implements OnInit {
     if (voteResult.id == this.selected) {
       return " bg-secondary"
     }
-    if (voteResult.percentageComplete > 99) {
+    if (voteResult.partyVotes.total != undefined && voteResult.partyVotes.total > 0) {
+    // if (voteResult.percentageComplete > 99) {
       return " bg-info bg-gradient"
     }
     return ""
